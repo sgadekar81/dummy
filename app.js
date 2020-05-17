@@ -24,9 +24,21 @@ app.get('/getLayout/:id', (req, res) => {
     res.json(getRes)
 })
 
+app.get('/api/ad/:id', (req, res) => {
+    let getRes = db.get('ads', req.params.id)
+    if (getRes.length) {
+        res.json(getRes[0])
+    } else {
+        res.json({})
+    }
+
+})
+
 // Start the server
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
     console.log('Press Ctrl+C to quit.');
 });
+
+
