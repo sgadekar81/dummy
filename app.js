@@ -9,9 +9,6 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-})
 app.get('/api/getList', (req, res) => {
     var list = ["item1", "item2", "item3"];
     res.json(list);
@@ -27,6 +24,15 @@ app.get('/api/ad/:id', (req, res) => {
     }
 
 })
+
+
+
+
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+})
+
 
 // Start the server
 const PORT = process.env.PORT || 8080;
