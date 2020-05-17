@@ -9,23 +9,14 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 })
-app.get('/home', (req, res) => {
-    res.json({info:'this is home path'});
-})
-
-
-app.post('/createList', (req, res) => {
-    let insertRes = db.insert('lists', req.body)
-    res.json(insertRes);
-})
-
-app.get('/getLayout/:id', (req, res) => {
-    let getRes = db.get('layouts', req.params.id)
-    res.json(getRes)
-})
+app.get('/api/getList', (req, res) => {
+    var list = ["item1", "item2", "item3"];
+    res.json(list);
+    console.log('Sent list of items');
+});
 
 app.get('/api/ad/:id', (req, res) => {
     let getRes = db.get('ads', req.params.id)
