@@ -12,6 +12,9 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 })
+app.get('/home', (req, res) => {
+    res.json({info:'this is home path'});
+})
 
 
 app.post('/createList', (req, res) => {
